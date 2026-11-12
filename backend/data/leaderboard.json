@@ -1,0 +1,62 @@
+{
+  "minesweeper": {
+    "ALEX": {
+      "wins": 1,
+      "best_score": 1827,
+      "games": 5
+    }
+  },
+  "qa_trivia": {
+    "ALEX": {
+      "wins": 1,
+      "best_score": 2197,
+      "games": 1
+    },
+    "jhgv": {
+      "wins": 1,
+      "best_score": 3044,
+      "games": 1
+    }
+  },
+  "snake": {
+    "ALEX": {
+      "wins": 13,
+      "best_score": 650,
+      "games": 18
+    },
+    "mhmoud": {
+      "wins": 1,
+      "best_score": 0,
+      "games": 1
+    },
+    "ARCHER": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    }
+  },
+  "chess": {
+    "ALEX": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 2
+    },
+    "jhgv": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 4
+    },
+    "mhmoudsdd": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    }
+  },
+  "globe": {
+    "ALEX": {
+      "wins": 2,
+      "best_score": 7266,
+      "games": 2
+    }
+  }
+}
