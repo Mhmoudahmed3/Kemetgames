@@ -58,5 +58,198 @@
       "best_score": 7266,
       "games": 2
     }
+  },
+  "tic_tac_toe": {
+    "Alice": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 2
+    },
+    "Bob": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice3": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob3": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice4": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob4": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Player 2": {
+      "wins": 2,
+      "best_score": 1,
+      "games": 2
+    }
+  },
+  "connect4": {
+    "Alice": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 2
+    },
+    "Bob": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice3": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob3": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice4": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob4": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Player 2": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "C4Host": {
+      "wins": 1,
+      "best_score": 0,
+      "games": 1
+    },
+    "C4Guest": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "C4DropP1": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "C4StayP2": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    }
+  },
+  "rock_paper_scissors": {
+    "Alice": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 2
+    },
+    "Bob": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice3": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob3": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice4": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob4": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Player 2": {
+      "wins": 3,
+      "best_score": 1,
+      "games": 3
+    },
+    "Challenger1": {
+      "wins": 2,
+      "best_score": 2,
+      "games": 4
+    },
+    "Challenger2": {
+      "wins": 2,
+      "best_score": 2,
+      "games": 4
+    },
+    "PnpHero": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 2
+    },
+    "RpsP1": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "RpsP2": {
+      "wins": 1,
+      "best_score": 2,
+      "games": 1
+    }
+  },
+  "playing_cards": {
+    "Alice": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 2
+    },
+    "Bob": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice3": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob3": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Alice4": {
+      "wins": 0,
+      "best_score": 0,
+      "games": 1
+    },
+    "Bob4": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    },
+    "Player 2": {
+      "wins": 1,
+      "best_score": 1,
+      "games": 1
+    }
   }
 }

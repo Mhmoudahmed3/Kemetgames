@@ -766,7 +766,21 @@ def test_uno_rules_actions_wilds_uno_shout_and_catch():
 def test_custom_difficulty_normalizes_across_all_11_engines():
     from backend.games import GAME_REGISTRY
 
-    assert len(GAME_REGISTRY) == 11
+    original_11 = {
+        "snake",
+        "minesweeper",
+        "chess",
+        "backgammon",
+        "dominoes",
+        "ludo",
+        "skru",
+        "uno",
+        "qa_trivia",
+        "globe",
+        "monopoly",
+    }
+    assert original_11.issubset(GAME_REGISTRY.keys())
+    assert len(GAME_REGISTRY) == 15
     for game_type, cls in GAME_REGISTRY.items():
         players = make_players(max(cls.MIN_PLAYERS, 2 if cls.MAX_PLAYERS >= 2 else 1))
         if cls.MIN_PLAYERS == 1 and not cls.SUPPORTS_BOTS:

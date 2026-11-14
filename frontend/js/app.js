@@ -52,6 +52,51 @@ const GAME_HAZARD_ICONS = {
     '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.35"/><circle cx="16" cy="16" r="14.5" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 2" stroke-opacity="0.6"/><ellipse cx="16" cy="16" rx="5.5" ry="13" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.3"/><line x1="3" y1="16" x2="29" y2="16" stroke="currentColor" stroke-width="1" stroke-dasharray="2 1.5" stroke-opacity="0.5"/><ellipse cx="16" cy="10" rx="11" ry="3.5" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.25"/><ellipse cx="16" cy="22" rx="11" ry="3.5" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.25"/><path d="M7 11 C8 9 10 9 11 12 C11.5 14 10 16 11 18 C11.5 19 12.5 20 12 22 C11 23 9.5 21 8.5 18 C8 16 6.5 13 7 11 Z" fill="currentColor" fill-opacity="0.75"/><path d="M17 8 C19 7 21 8 21 10 C20 12 18 12 18.5 14 C19 16 22 17 21 21 C20 23 18 24 17 21 C16 19 16 15 17 12 Z" fill="currentColor" fill-opacity="0.75"/><path d="M10 14 Q16 7 23 12" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1.5 1.5"/><g transform="translate(23,12)"><circle cx="0" cy="0" r="3" stroke="var(--accent)" stroke-width="0.8"/><circle cx="0" cy="0" r="1.5" fill="var(--accent)"/><path d="M0 -5 L0 -3 M0 3 L0 5 M-5 0 L-3 0 M3 0 L5 0" stroke="var(--accent)" stroke-width="0.8"/></g></svg>',
   monopoly:
     '<svg viewBox="0 0 32 32" fill="none"><g transform="translate(14,3) rotate(8)"><rect x="0" y="0" width="14" height="20" rx="2" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1"/><rect x="1" y="1" width="12" height="5" rx="1" fill="var(--accent)"/><polygon points="7,2 4.5,4 9.5,4" fill="#fff"/><rect x="5" y="4" width="4" height="2" fill="#fff"/><line x1="3" y1="8.5" x2="11" y2="8.5" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.6"/><line x1="3" y1="11" x2="11" y2="11" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.6"/><line x1="4" y1="13.5" x2="10" y2="13.5" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.6"/></g><g transform="translate(3,10) rotate(-6)"><path d="M4 14 L5 4 H15 L16 14 Z" fill="currentColor" stroke="#101012" stroke-width="0.8"/><rect x="4.8" y="11" width="10.4" height="3" fill="var(--accent)"/><ellipse cx="10" cy="14.5" rx="9" ry="2.8" fill="currentColor" stroke="#101012" stroke-width="0.8"/><ellipse cx="10" cy="14" rx="7" ry="1.6" fill="var(--accent)" fill-opacity="0.3"/></g><g transform="translate(20,20)"><circle cx="5" cy="5" r="5.5" fill="var(--accent)" stroke="#fff" stroke-width="1"/><text x="5" y="8" fill="#fff" font-family="\'DM Sans\', sans-serif" font-weight="800" font-size="7.5" text-anchor="middle">$</text></g></svg>',
+  tic_tac_toe:
+    '<svg viewBox="0 0 32 32" fill="none">' +
+    '<g stroke="currentColor" stroke-width="1" stroke-opacity="0.35" stroke-linecap="round">' +
+    '<line x1="11" y1="4" x2="11" y2="28"/><line x1="21" y1="4" x2="21" y2="28"/>' +
+    '<line x1="4" y1="11" x2="28" y2="11"/><line x1="4" y1="21" x2="28" y2="21"/>' +
+    '</g>' +
+    '<g stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round">' +
+    '<line x1="6.5" y1="6.5" x2="9.5" y2="9.5"/><line x1="9.5" y1="6.5" x2="6.5" y2="9.5"/>' +
+    '<line x1="22.5" y1="22.5" x2="25.5" y2="25.5"/><line x1="25.5" y1="22.5" x2="22.5" y2="25.5"/>' +
+    '</g>' +
+    '<circle cx="16" cy="16" r="3.2" fill="none" stroke="#fff" stroke-width="2"/>' +
+    '<circle cx="24" cy="8" r="2.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.6"/>' +
+    '<line x1="4.5" y1="4.5" x2="27.5" y2="27.5" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="2 1.5"/>' +
+    '</svg>',
+  rock_paper_scissors:
+    '<svg viewBox="0 0 32 32" fill="none">' +
+    '<g transform="translate(6, 6)">' +
+    '<circle cx="10" cy="10" r="9" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.5"/>' +
+    '<path d="M4 14V8C4 6.8 5 6 6 6C7 6 8 6.8 8 8V12M8 9C8 7.8 9 7 10 7C11 7 12 7.8 12 9V14M12 11C12 9.8 13 9 14 9C15 9 16 9.8 16 11V15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>' +
+    '<circle cx="15" cy="5" r="2.5" fill="var(--accent)"/>' +
+    '</g>' +
+    '</svg>',
+  connect4:
+    '<svg viewBox="0 0 32 32" fill="none">' +
+    '<rect x="3" y="5" width="26" height="22" rx="3" fill="#141416" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.4"/>' +
+    '<circle cx="8" cy="11" r="2.2" fill="#ff4034"/>' +
+    '<circle cx="13.3" cy="11" r="2.2" fill="#facc15"/>' +
+    '<circle cx="18.6" cy="11" r="2.2" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.3"/>' +
+    '<circle cx="24" cy="11" r="2.2" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.3"/>' +
+    '<circle cx="8" cy="16" r="2.2" fill="#facc15"/>' +
+    '<circle cx="13.3" cy="16" r="2.2" fill="#ff4034"/>' +
+    '<circle cx="18.6" cy="16" r="2.2" fill="#ff4034"/>' +
+    '<circle cx="24" cy="16" r="2.2" fill="#facc15"/>' +
+    '<circle cx="8" cy="21" r="2.2" fill="#ff4034"/>' +
+    '<circle cx="13.3" cy="21" r="2.2" fill="#ff4034"/>' +
+    '<circle cx="18.6" cy="21" r="2.2" fill="#facc15"/>' +
+    '<circle cx="24" cy="21" r="2.2" fill="#ff4034"/>' +
+    '<line x1="6" y1="23" x2="26" y2="9" stroke="#ff4034" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 1.5"/>' +
+    '</svg>',
+  playing_cards:
+    '<svg viewBox="0 0 32 32" fill="none">' +
+    '<rect x="4" y="6" width="14" height="20" rx="2.5" fill="#141418" stroke="currentColor" stroke-width="1.2" transform="rotate(-12 11 16)"/>' +
+    '<rect x="13" y="5" width="15" height="21" rx="2.5" fill="#1e1e26" stroke="var(--accent)" stroke-width="1.4"/>' +
+    '<path d="M20.5 11 C20 9 17 11 17 13.5 C17 15 18.5 16 19.5 16.5 V18 H21.5 V16.5 C22.5 16 24 15 24 13.5 C24 11 21 9 20.5 11 Z" fill="var(--accent)"/>' +
+    '</svg>',
 };
 
 const GAME_SETTINGS_SCHEMA = {
@@ -99,6 +144,26 @@ const GAME_SETTINGS_SCHEMA = {
   ],
   monopoly: [
     { key: 'difficulty', label: 'DIFFICULTY', options: ['easy', 'mid', 'hard'] },
+  ],
+  tic_tac_toe: [
+    { key: 'mode', label: 'GAME MODE', options: ['classic', 'misere', 'extended_4x4', 'extended_5x5', 'ultimate'] },
+    { key: 'difficulty', label: 'AI DIFFICULTY', options: ['easy', 'mid', 'hard'] },
+    { key: 'first_player', label: 'FIRST MOVE', options: ['x', 'o', 'random'] },
+    { key: 'grid_size', label: 'GRID SIZE', options: ['3', '4', '5'] },
+  ],
+  rock_paper_scissors: [
+    { key: 'mode', label: 'GAME MODE', options: ['classic', 'lizard_spock'] },
+    { key: 'format', label: 'MATCH FORMAT', options: ['bo3', 'bo5', 'endless'] },
+    { key: 'difficulty', label: 'AI DIFFICULTY', options: ['easy', 'mid', 'hard'] },
+  ],
+  connect4: [
+    { key: 'mode', label: 'GAME MODE', options: ['classic', 'pop_out', 'five_in_a_row', 'blitz'] },
+    { key: 'difficulty', label: 'AI DIFFICULTY', options: ['easy', 'mid', 'hard'] },
+    { key: 'blitz_time', label: 'BLITZ TIME (SEC)', options: ['5', '7', '10'] },
+  ],
+  playing_cards: [
+    { key: 'mode', label: 'GAME MODE', options: ['blackjack', 'war', 'memory', 'high_low'] },
+    { key: 'difficulty', label: 'AI DIFFICULTY', options: ['easy', 'mid', 'hard'] },
   ],
 };
 

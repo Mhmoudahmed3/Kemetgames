@@ -18,8 +18,8 @@ def test_http_health_catalog_and_spa():
         res_games = client.get("/api/games")
         assert res_games.status_code == 200
         games = res_games.json()["games"]
-        assert len(games) == 11
-        assert {g["game_type"] for g in games} == {
+        game_types = {g["game_type"] for g in games}
+        original_11 = {
             "snake",
             "minesweeper",
             "chess",
@@ -32,6 +32,10 @@ def test_http_health_catalog_and_spa():
             "globe",
             "monopoly",
         }
+        assert original_11.issubset(game_types)
+        new_4 = {"tic_tac_toe", "rock_paper_scissors", "connect4", "playing_cards"}
+        assert len(games) == 15
+        assert game_types == (original_11 | new_4)
         qa_meta = next(g for g in games if g["game_type"] == "qa_trivia")
         assert qa_meta["title"] == "QA"
 

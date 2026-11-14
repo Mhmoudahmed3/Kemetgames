@@ -20,7 +20,14 @@ DATA_DIR = Path(__file__).resolve().parent / "data"
 LEADERBOARD_PATH = DATA_DIR / "leaderboard.json"
 
 LOWER_IS_BETTER_GAMES = {"skru"}
-DUEL_FORFEIT_GAMES = {"chess", "backgammon"}
+DUEL_FORFEIT_GAMES = {
+    "chess",
+    "backgammon",
+    "tic_tac_toe",
+    "rock_paper_scissors",
+    "connect4",
+    "playing_cards",
+}
 PARTY_BOT_TAKEOVER_GAMES = {"dominoes", "ludo", "skru", "uno", "monopoly"}
 DUEL_DISCONNECT_GRACE_SECONDS = 20.0
 PARTY_DISCONNECT_GRACE_SECONDS = 10.0
@@ -37,6 +44,10 @@ ALLOWED_SETTINGS_KEYS: dict[str, set[str]] = {
     "qa_trivia": {"difficulty", "category", "rounds"},
     "globe": {"difficulty", "mode", "rounds"},
     "monopoly": {"difficulty"},
+    "tic_tac_toe": {"difficulty", "mode", "grid_size", "pass_and_play", "first_player"},
+    "rock_paper_scissors": {"difficulty", "mode", "format", "rounds", "pass_and_play"},
+    "connect4": {"difficulty", "mode", "blitz_time", "pass_and_play"},
+    "playing_cards": {"difficulty", "mode", "subgame", "rounds", "rows", "cols", "pass_and_play", "pairs_count", "grid_size"},
 }
 
 BOT_NAMES = [
@@ -200,16 +211,48 @@ class RoomManager:
                 cleaned["difficulty"] = normalize_difficulty(
                     v, allow_custom=game_cls_or_inst.SUPPORTS_CUSTOM_DIFFICULTY
                 )
-            elif k in ("duration", "target_score", "rounds", "rows", "cols", "mines", "width", "height", "booms"):
+            elif k in (
+                "duration", "target_score", "rounds", "rows", "cols",
+                "mines", "width", "height", "booms", "blitz_time"
+            ):
                 parsed = self._safe_int(v)
                 if parsed is not None:
                     cleaned[k] = parsed
+            elif k == "pairs_count":
+                parsed = self._safe_int(v)
+                if parsed is not None and parsed > 0:
+                    cleaned["pairs_count"] = parsed
+            elif k == "grid_size":
+                if isinstance(v, str) and v.strip() in ("3x3", "4x4", "5x5", "6x4"):
+                    cleaned["grid_size"] = v.strip()
+                else:
+                    parsed = self._safe_int(v)
+                    if parsed is not None:
+                        cleaned["grid_size"] = parsed
             elif k == "mode":
                 m_val = str(v or "").strip().lower()
                 if game_type == "backgammon" and m_val in ("classic", "tawla_31", "mahbosa"):
                     cleaned["mode"] = m_val
                 elif game_type == "globe" and m_val in ("mix", "name", "flag", "hint", "borders_between"):
                     cleaned["mode"] = m_val
+                elif game_type == "tic_tac_toe" and m_val in ("classic", "misere", "extended_4x4", "extended_5x5", "4x4", "5x5", "extended", "ultimate"):
+                    cleaned["mode"] = m_val
+                elif game_type == "rock_paper_scissors" and m_val in ("classic", "lizard_spock", "rpsls"):
+                    cleaned["mode"] = m_val
+                elif game_type == "connect4" and m_val in ("classic", "pop_out", "five_in_a_row", "5_in_a_row", "blitz"):
+                    cleaned["mode"] = m_val
+                elif game_type == "playing_cards" and m_val in ("blackjack", "war", "memory", "high_low"):
+                    cleaned["mode"] = m_val
+            elif k == "subgame":
+                sg_val = str(v or "").strip().lower()
+                if game_type == "playing_cards" and sg_val in ("blackjack", "war", "memory", "high_low"):
+                    cleaned["subgame"] = sg_val
+            elif k == "format":
+                f_val = str(v or "").strip().lower()
+                if game_type == "rock_paper_scissors" and f_val in ("bo3", "bo5", "endless", "best_of_3", "best_of_5", "single"):
+                    cleaned["format"] = f_val
+            elif k in ("pass_and_play", "local"):
+                cleaned["pass_and_play"] = bool(v)
             elif k == "time_control":
                 tc = str(v or "").strip()
                 if tc in ("3+2", "5+0", "10+0"):
@@ -217,6 +260,10 @@ class RoomManager:
             elif k == "category":
                 from backend.games.qa_trivia_game import normalize_qa_category
                 cleaned["category"] = normalize_qa_category(v)
+            elif k == "first_player":
+                fp = str(v or "").strip().lower()
+                if fp in ("x", "o", "random"):
+                    cleaned["first_player"] = fp
             elif k == "custom_board" and isinstance(v, list):
                 cleaned["custom_board"] = v
             elif k == "custom_fen" and isinstance(v, str):
@@ -576,8 +623,13 @@ class RoomManager:
 
         code = self._generate_room_code()
         solo = bool(data.get("solo", False))
-        is_public = bool(data.get("is_public", not solo))
         settings = self._sanitize_settings(game_cls, game_type, data.get("settings"))
+        is_pass_and_play = bool(
+            data.get("pass_and_play", False) or settings.get("pass_and_play", False)
+        )
+        if is_pass_and_play:
+            settings["pass_and_play"] = True
+        is_public = bool(data.get("is_public", not solo and not is_pass_and_play))
 
         host_slot = PlayerSlot(
             id=session.client_id,
@@ -596,17 +648,29 @@ class RoomManager:
             target_players=pc,
         )
 
-        if solo and not game.SUPPORTS_SOLO and game.SUPPORTS_BOTS and requested_bots == 0:
+        if is_pass_and_play:
+            # 2-Player Pass-and-Play: allocate local Player 2 human slot
+            p2_slot = PlayerSlot(
+                id=f"{session.client_id}_p2",
+                name=data.get("player2_name") or "Player 2",
+                is_bot=False,
+                is_host=False,
+                connected=True,
+                seat=1,
+            )
+            game.players.append(p2_slot)
+
+        if solo and not is_pass_and_play and not game.SUPPORTS_SOLO and game.SUPPORTS_BOTS and requested_bots == 0:
             if pc is not None:
                 requested_bots = max(1, pc - 1)
             else:
                 requested_bots = max(1, game.MIN_PLAYERS - 1)
-        if requested_bots > 0 and game.SUPPORTS_BOTS:
+        if requested_bots > 0 and game.SUPPORTS_BOTS and not is_pass_and_play:
             max_bots = game.MAX_PLAYERS - len(game.players)
             for _ in range(min(requested_bots, max_bots)):
                 self._add_bot_slot(room)
 
-        if solo:
+        if solo or is_pass_and_play:
             ok, err = game.can_start()
             if not ok:
                 await self._send_error(session.client_id, err)
@@ -621,7 +685,7 @@ class RoomManager:
 
         await self._send_room_joined(session, room)
 
-        if solo:
+        if solo or is_pass_and_play:
             await self._start_room_game(room, settings)
         await self.broadcast_lobby_state()
 
@@ -1091,7 +1155,11 @@ class RoomManager:
             await self._send_error(session.client_id, "Spectators cannot perform actions.")
             return
 
-        ok, err = room.game.handle_action(session.client_id, action, data)
+        acting_id = session.client_id
+        if room.game.settings.get("pass_and_play"):
+            acting_id = data.get("player_id") or room.game.turn_player_id or session.client_id
+
+        ok, err = room.game.handle_action(acting_id, action, data)
         if not ok:
             await self._send_error(session.client_id, err or "Illegal move.")
             return
@@ -1305,23 +1373,23 @@ class RoomManager:
             "room_meta": self._room_meta_state(room),
         }
         players_payload = self._room_players_payload(room)
-        await self._broadcast_to_room(
-            room,
-            {
-                "type": "GAME_STATE",
-                "room_code": room.room_code,
-                "game_type": room.game_type,
-                "public_state": public_state,
-                "private_state": {},
-                "players": players_payload,
-                "message": "",
-            },
-        )
-        # Send strictly isolated PRIVATE_STATE to each human player only
+        # Send strictly isolated GAME_STATE to each player (private_state remains empty in GAME_STATE; private_state dispatched via PRIVATE_STATE)
         for p in room.game.players:
             if not self._is_active_room_recipient(room, p):
                 continue
-            priv = room.game.get_private_state(p.id)
+            priv = room.game.get_private_state(p.id) or {}
+            await self._send_json(
+                p.id,
+                {
+                    "type": "GAME_STATE",
+                    "room_code": room.room_code,
+                    "game_type": room.game_type,
+                    "public_state": public_state,
+                    "private_state": {},
+                    "players": players_payload,
+                    "message": "",
+                },
+            )
             if priv:
                 await self._send_json(
                     p.id,
@@ -1335,6 +1403,21 @@ class RoomManager:
                         "message": "",
                     },
                 )
+        for s in room.game.spectators:
+            if not self._is_active_room_recipient(room, s):
+                continue
+            await self._send_json(
+                s.id,
+                {
+                    "type": "GAME_STATE",
+                    "room_code": room.room_code,
+                    "game_type": room.game_type,
+                    "public_state": public_state,
+                    "private_state": {},
+                    "players": players_payload,
+                    "message": "",
+                },
+            )
 
     def _open_public_rooms_payload(self) -> list[dict[str, Any]]:
         open_rooms: list[dict[str, Any]] = []

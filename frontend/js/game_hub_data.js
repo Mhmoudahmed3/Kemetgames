@@ -265,6 +265,453 @@ export const GAME_HUB_META = {
       { id: 'host_table', thumbIdx: 2, title: 'HOST 2–6P MONOPOLY', sub: 'Open a multiplayer Monopoly room', est: 'EST. 25 MIN', minPlayers: 2, maxPlayers: 6, defaultPlayers: 6, supportsSolo: true, supportsHost: true, defaultMatchup: 'host', solo: false, settings: {} },
     ],
   },
+
+  tic_tac_toe: {
+    shortTitle: 'Tic-Tac-Toe',
+    estTime: '2–6 MIN',
+    badge: 'STRATEGY · 5 MODES · 1–2P',
+    controls: 'Click Open Grid Cell · In Ultimate, Follow Target Sub-Board Indicator',
+    difficultyNotes: {
+      easy: 'Easy: Casual bot that chooses random open cells with occasional basic blocks.',
+      mid: 'Mid: Tactical bot that blocks immediate 1-move wins and seizes open winning lines.',
+      hard: 'Hard: Mathematically unbeatable Minimax AI (zero losses) for 3×3 & deep heuristic search for 4×4, 5×5, and Ultimate.',
+    },
+    helpTips: [
+      {
+        title: 'CLASSIC 3×3 & MISÈRE RULES',
+        body: 'Classic: Align 3 marks in a row (horizontal, vertical, or diagonal) to win. Misère (inverse): Completing 3-in-a-row immediately loses the match, forcing defensive trap placement!'
+      },
+      {
+        title: 'EXTENDED 4×4 & 5×5 GRIDS',
+        body: 'Larger tactical battlegrounds requiring 4-in-a-row to win! 3-in-a-row does NOT win. On 5×5, sliding 4-streak lines open up rich offensive diagonals.'
+      },
+      {
+        title: 'ULTIMATE TIC-TAC-TOE ROUTING',
+        body: '9 nested 3×3 sub-boards! Your move within a sub-board dictates which sub-board your opponent must play in next. If the target sub-board is already won or full, free placement unlocks across all open sub-boards.'
+      },
+      {
+        title: 'UNBEATABLE MINIMAX AI',
+        body: 'On Classic 3×3, the Hard bot runs a minimax game-tree solver that guarantees zero losses (win or draw) against any player move.'
+      },
+    ],
+    activities: [
+      {
+        id: 'classic_minimax',
+        thumbIdx: 0,
+        title: 'CLASSIC 3×3 VS MINIMAX AI',
+        sub: 'Standard 3-in-a-row vs mathematically unbeatable AI',
+        est: 'EST. 2 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'classic', grid_size: 3, difficulty: 'hard' },
+      },
+      {
+        id: 'misere_duel',
+        thumbIdx: 1,
+        title: 'MISÈRE MODE (3-IN-A-ROW LOSES)',
+        sub: 'Inverted win rule: force your rival to complete 3 marks',
+        est: 'EST. 3 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'misere', grid_size: 3, difficulty: 'mid' },
+      },
+      {
+        id: 'extended_4x4',
+        thumbIdx: 2,
+        title: 'EXTENDED 4×4 (4-IN-A-ROW)',
+        sub: 'Expanded 16-cell board requiring 4-in-a-row to win',
+        est: 'EST. 4 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'extended_4x4', grid_size: 4, difficulty: 'mid' },
+      },
+      {
+        id: 'extended_5x5',
+        thumbIdx: 3,
+        title: 'EXTENDED 5×5 (4-IN-A-ROW)',
+        sub: 'Tactical 25-cell grid with sliding 4-mark streaks',
+        est: 'EST. 5 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'extended_5x5', grid_size: 5, difficulty: 'mid' },
+      },
+      {
+        id: 'ultimate_ttt',
+        thumbIdx: 4,
+        title: 'ULTIMATE TIC-TAC-TOE',
+        sub: '9 nested boards with opponent-dictated target routing',
+        est: 'EST. 8 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'ultimate', difficulty: 'mid' },
+      },
+      {
+        id: 'host_2p',
+        thumbIdx: 0,
+        title: 'HOST 2P MULTIPLAYER ROOM',
+        sub: 'Challenge a friend online or pass-and-play locally',
+        est: 'EST. 5 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'host',
+        solo: false,
+        settings: { mode: 'classic', grid_size: 3 },
+      },
+    ],
+  },
+  rock_paper_scissors: {
+    title: 'ROCK PAPER SCISSORS',
+    sub: 'Classic 3-Choice and RPS-Lizard-Spock across Best-of-3, Best-of-5, and Endless formats',
+    tag: 'TACTICAL CLASH',
+    difficulty: 'MODERATE',
+    players: '2 PLAYERS',
+    modes: [
+      {
+        id: 'rps_classic_bo3',
+        thumbIdx: 0,
+        title: 'CLASSIC BEST-OF-3',
+        sub: 'Standard Rock-Paper-Scissors in first-to-2 match',
+        est: 'EST. 3 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'classic', format: 'bo3', difficulty: 'mid' },
+      },
+      {
+        id: 'rps_lizard_spock_bo5',
+        thumbIdx: 1,
+        title: 'RPS-LIZARD-SPOCK (5-CHOICE)',
+        sub: 'Expanded 5-weapon cyclic graph in Best-of-5 format',
+        est: 'EST. 5 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'lizard_spock', format: 'bo5', difficulty: 'mid' },
+      },
+      {
+        id: 'rps_endless_streak',
+        thumbIdx: 2,
+        title: 'ENDLESS STREAK CHALLENGE',
+        sub: 'Chain consecutive round victories against predictive AI',
+        est: 'ENDLESS',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'classic', format: 'endless', difficulty: 'hard' },
+      },
+      {
+        id: 'rps_host_duel',
+        thumbIdx: 3,
+        title: 'HOST 2P MULTIPLAYER ROOM',
+        sub: 'Challenge a rival online or pass-and-play locally',
+        est: 'EST. 4 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'host',
+        solo: false,
+        settings: { mode: 'classic', format: 'bo3' },
+      },
+    ],
+  },
+  connect4: {
+    title: 'CONNECT 4',
+    sub: 'Vertical disc drops with Classic (7x6), Pop Out mode, 5-in-a-Row (9x7), and Blitz Mode with 5s countdown timer',
+    tag: 'STRATEGY DUEL',
+    difficulty: 'MODERATE',
+    players: '2 PLAYERS',
+    modes: [
+      {
+        id: 'c4_classic_duel',
+        thumbIdx: 0,
+        title: 'CLASSIC 7×6 DUEL',
+        sub: 'Drop discs vertically to connect four in a row',
+        est: 'EST. 3–5 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'classic', difficulty: 'mid' },
+      },
+      {
+        id: 'c4_pop_out',
+        thumbIdx: 1,
+        title: 'POP OUT MODE',
+        sub: 'Drop from the top or pop your discs from the bottom row',
+        est: 'EST. 4–6 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'pop_out', difficulty: 'mid' },
+      },
+      {
+        id: 'c4_five_in_a_row',
+        thumbIdx: 2,
+        title: '5-IN-A-ROW (9×7)',
+        sub: 'Expanded 9 columns by 7 rows requiring 5 discs to win',
+        est: 'EST. 5–8 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'five_in_a_row', difficulty: 'mid' },
+      },
+      {
+        id: 'c4_blitz_5s',
+        thumbIdx: 3,
+        title: 'BLITZ 5-SECOND TIMER',
+        sub: 'Rapid-fire turns with strict 5s timer countdown',
+        est: 'EST. 2–3 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'blitz', blitz_time: 5, difficulty: 'mid' },
+      },
+      {
+        id: 'c4_host_room',
+        thumbIdx: 4,
+        title: 'HOST 2P MULTIPLAYER ROOM',
+        sub: 'Challenge a friend online or pass-and-play locally',
+        est: 'EST. 5 MIN',
+        minPlayers: 2,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'host',
+        solo: false,
+        settings: { mode: 'classic' },
+      },
+    ],
+  },
+  playing_cards: {
+    title: 'PLAYING CARDS',
+    shortTitle: 'Playing Cards',
+    sub: 'Authentic 52-card table featuring Blackjack (vs Dealer), War, Memory / Concentration, and High-Low streak multipliers',
+    tag: 'CASINO & CARD ARCADE',
+    difficulty: 'CASUAL TO HARD',
+    players: '1–2 PLAYERS',
+    estTime: '2–5 MIN',
+    badge: 'CARDS · 4 MODES · 1–2P',
+    controls: 'Click Cards to Flip / Action Buttons (Hit, Stand, Double, Split, Higher, Lower)',
+    difficultyNotes: {
+      easy: 'Easy: Friendly dealer and casual bot with relaxed play.',
+      mid: 'Mid: Standard casino dealer draw rules and tactical AI.',
+      hard: 'Hard: Expert AI with photographic card memory and sharp probability tracking.',
+    },
+    helpTips: [
+      {
+        title: 'BLACKJACK RULES & SPLIT',
+        body: 'Draw cards trying to get closer to 21 than the dealer without busting. Pair of same-rank cards can be split into two hands. Double down to double your bet on initial cards.',
+      },
+      {
+        title: 'WAR & TIE-BREAKER PILES',
+        body: 'Higher card wins the battle (Ace high). Ties trigger War: 3 cards face-down and 1 face-up deciding card. Chained consecutive wars accumulate massive card pots!',
+      },
+      {
+        title: 'MEMORY / CONCENTRATION',
+        body: 'Flip 2 cards to find matching ranks. Matched pairs lock in face-up. Beat the clock and track your total moves.',
+      },
+      {
+        title: 'HIGH-LOW STREAK LADDER',
+        body: 'Predict whether the next card drawn is higher or lower. Equal rank preserves your streak (Push). Climb the multiplier ladder up to 50x and bank points!',
+      },
+    ],
+    activities: [
+      {
+        id: 'cards_blackjack',
+        thumbIdx: 0,
+        title: 'BLACKJACK VS DEALER',
+        sub: 'Hit, Stand, Double Down, Split & Dealer draws to 17',
+        est: 'EST. 3 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 1,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        settings: { mode: 'blackjack', difficulty: 'mid' },
+      },
+      {
+        id: 'cards_war',
+        thumbIdx: 1,
+        title: 'WAR 2-PLAYER BATTLE',
+        sub: 'Click-to-flip battles with 3-card tie-breaker war piles',
+        est: 'EST. 4 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'war', difficulty: 'mid' },
+      },
+      {
+        id: 'cards_memory',
+        thumbIdx: 2,
+        title: 'MEMORY / CONCENTRATION',
+        sub: '3D card flipping, move tracking & timer challenge',
+        est: 'EST. 3 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 1,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        settings: { mode: 'memory', grid_size: '4x4', pairs_count: 8, difficulty: 'mid' },
+      },
+      {
+        id: 'cards_high_low',
+        thumbIdx: 3,
+        title: 'HIGH-LOW STREAK MULTIPLIER',
+        sub: 'Higher or Lower guesses with 50x multiplier ladder & bank',
+        est: 'EST. 2 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 1,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        settings: { mode: 'high_low', difficulty: 'mid' },
+      },
+    ],
+    modes: [
+      {
+        id: 'cards_blackjack',
+        thumbIdx: 0,
+        title: 'BLACKJACK VS DEALER',
+        sub: 'Hit, Stand, Double Down, Split & Dealer draws to 17',
+        est: 'EST. 3 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 1,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        settings: { mode: 'blackjack', difficulty: 'mid' },
+      },
+      {
+        id: 'cards_war',
+        thumbIdx: 1,
+        title: 'WAR 2-PLAYER BATTLE',
+        sub: 'Click-to-flip battles with 3-card tie-breaker war piles',
+        est: 'EST. 4 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 2,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        botCount: 1,
+        settings: { mode: 'war', difficulty: 'mid' },
+      },
+      {
+        id: 'cards_memory',
+        thumbIdx: 2,
+        title: 'MEMORY / CONCENTRATION',
+        sub: '3D card flipping, move tracking & timer challenge',
+        est: 'EST. 3 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 1,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        settings: { mode: 'memory', grid_size: '4x4', pairs_count: 8, difficulty: 'mid' },
+      },
+      {
+        id: 'cards_high_low',
+        thumbIdx: 3,
+        title: 'HIGH-LOW STREAK MULTIPLIER',
+        sub: 'Higher or Lower guesses with 50x multiplier ladder & bank',
+        est: 'EST. 2 MIN',
+        minPlayers: 1,
+        maxPlayers: 2,
+        defaultPlayers: 1,
+        supportsSolo: true,
+        supportsHost: true,
+        defaultMatchup: 'ai',
+        solo: true,
+        settings: { mode: 'high_low', difficulty: 'mid' },
+      },
+    ],
+  },
 };
 
 /**
@@ -794,6 +1241,220 @@ export function renderGameHeroArt(gameType) {
         </g>
         <text x="720" y="810" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="600" font-size="12" letter-spacing="3" opacity="0.25">MONOPOLY PROTOCOL · 4-PLAYER TYCOON · AUCTIONS · TRADING · HOTELS</text>
       </svg>`;
+
+    case 'tic_tac_toe':
+      return `<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        ${glow}
+        <!-- Isometric 3D Projection Grid Backdrop -->
+        <g transform="translate(680, 220) skewX(-20) scale(0.9, 0.5)" opacity="0.22">
+          <rect x="0" y="0" width="600" height="600" rx="16" fill="rgba(16,16,22,0.6)" stroke="var(--color-bone)" stroke-width="2"/>
+          <line x1="200" y1="0" x2="200" y2="600" stroke="var(--accent)" stroke-width="3" stroke-dasharray="12 6"/>
+          <line x1="400" y1="0" x2="400" y2="600" stroke="var(--accent)" stroke-width="3" stroke-dasharray="12 6"/>
+          <line x1="0" y1="200" x2="600" y2="200" stroke="var(--accent)" stroke-width="3" stroke-dasharray="12 6"/>
+          <line x1="0" y1="400" x2="600" y2="400" stroke="var(--accent)" stroke-width="3" stroke-dasharray="12 6"/>
+          ${[0, 200, 400].map(gx => [0, 200, 400].map(gy => `
+            <g transform="translate(${gx + 20}, ${gy + 20})">
+              <line x1="53" y1="0" x2="53" y2="160" stroke="var(--color-bone)" stroke-width="0.8" opacity="0.3"/>
+              <line x1="106" y1="0" x2="106" y2="160" stroke="var(--color-bone)" stroke-width="0.8" opacity="0.3"/>
+              <line x1="0" y1="53" x2="160" y2="53" stroke="var(--color-bone)" stroke-width="0.8" opacity="0.3"/>
+              <line x1="0" y1="106" x2="160" y2="106" stroke="var(--color-bone)" stroke-width="0.8" opacity="0.3"/>
+            </g>
+          `).join('')).join('')}
+        </g>
+
+        <!-- Tactical Target Radar Circle & Crosshairs -->
+        <circle cx="1040" cy="450" r="320" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="10 6" opacity="0.35"/>
+        <circle cx="1040" cy="450" r="220" fill="none" stroke="var(--color-bone)" stroke-width="0.8" stroke-dasharray="4 8" opacity="0.2"/>
+        <line x1="720" y1="450" x2="1360" y2="450" stroke="var(--accent)" stroke-width="0.8" opacity="0.2"/>
+        <line x1="1040" y1="130" x2="1040" y2="770" stroke="var(--accent)" stroke-width="0.8" opacity="0.2"/>
+
+        <!-- Dramatic Giant Neon 'X' Cross (Hero Foreground Left) -->
+        <g transform="translate(860, 260)">
+          <path d="M 0 0 L 140 140 M 140 0 L 0 140" stroke="var(--accent)" stroke-width="28" stroke-linecap="round" opacity="0.25"/>
+          <path d="M 0 0 L 140 140 M 140 0 L 0 140" stroke="#0a0a0a" stroke-width="22" stroke-linecap="round"/>
+          <path d="M 0 0 L 140 140 M 140 0 L 0 140" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="70" cy="70" r="6" fill="#fff"/>
+        </g>
+
+        <!-- Dramatic Giant Neon 'O' Torus (Hero Foreground Right) -->
+        <g transform="translate(1080, 360)">
+          <circle cx="80" cy="80" r="75" fill="rgba(16,16,22,0.9)" stroke="var(--color-bone)" stroke-width="14" stroke-opacity="0.85"/>
+          <circle cx="80" cy="80" r="75" fill="none" stroke="var(--accent)" stroke-width="4"/>
+          <circle cx="80" cy="80" r="60" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 6" opacity="0.6"/>
+          <circle cx="80" cy="80" r="8" fill="var(--accent)"/>
+        </g>
+
+        <!-- Diagonal Winning Laser Strike Line with Terminal Spark Nodes -->
+        <g transform="translate(760, 200)">
+          <line x1="0" y1="360" x2="480" y2="0" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+          <line x1="0" y1="360" x2="480" y2="0" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="0" cy="360" r="7" fill="var(--accent)" stroke="#fff" stroke-width="2"/>
+          <circle cx="480" cy="0" r="7" fill="var(--accent)" stroke="#fff" stroke-width="2"/>
+        </g>
+
+        <!-- HUD Telemetry & Minimax Metadata -->
+        <g transform="translate(780, 680)" font-family="'DM Sans', sans-serif" opacity="0.75">
+          <rect x="0" y="0" width="280" height="36" rx="8" fill="rgba(20,20,28,0.8)" stroke="var(--color-hairline)"/>
+          <circle cx="16" cy="18" r="4" fill="var(--accent)"/>
+          <text x="30" y="22" fill="var(--color-bone)" font-size="12" font-weight="700" letter-spacing="1">MINIMAX 3×3 // UNBEATABLE SOLVER</text>
+        </g>
+      </svg>`;
+
+    case 'rock_paper_scissors': {
+      return `<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        ${glow}
+        <!-- Glowing Geometric Pentagram Graph in Perspective -->
+        <g transform="translate(980, 420)">
+          <!-- Ambient Concentric Orbit Rings -->
+          <circle cx="0" cy="0" r="260" stroke="var(--color-bone)" stroke-width="0.8" stroke-dasharray="3 6" opacity="0.2"/>
+          <circle cx="0" cy="0" r="180" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="6 8" opacity="0.45"/>
+          <circle cx="0" cy="0" r="90" stroke="var(--color-bone)" stroke-width="0.6" opacity="0.15"/>
+
+          <!-- 5 Pentagram Nodes & Chords -->
+          <polygon points="0,-160 152,-49 94,130 -94,130 -152,-49" fill="rgba(16,16,22,0.6)" stroke="var(--accent)" stroke-width="2.5" stroke-opacity="0.8"/>
+          <polygon points="0,-160 94,130 -152,-49 152,-49 -94,130" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+
+          <!-- Node Markers -->
+          <circle cx="0" cy="-160" r="18" fill="#18181B" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="152" cy="-49" r="18" fill="#18181B" stroke="var(--color-snow-white)" stroke-width="2"/>
+          <circle cx="94" cy="130" r="18" fill="#18181B" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="-94" cy="130" r="18" fill="#18181B" stroke="var(--color-snow-white)" stroke-width="2"/>
+          <circle cx="-152" cy="-49" r="18" fill="#18181B" stroke="var(--accent)" stroke-width="2"/>
+        </g>
+
+        <!-- Clashing Neon Vector Hands (Hero Center) -->
+        <g transform="translate(800, 320)">
+          <!-- Left Clashing Fist -->
+          <g transform="translate(-80, 0)">
+            <circle cx="50" cy="50" r="65" fill="rgba(18,18,24,0.85)" stroke="var(--accent)" stroke-width="3"/>
+            <path d="M30 46V38C30 35 32 33 35 33H55C60 33 64 37 64 42V56C64 62 58 66 52 66H42C34 66 28 60 28 52V46Z" fill="var(--accent)" opacity="0.9"/>
+          </g>
+          <!-- Energy Clash Spark -->
+          <circle cx="50" cy="50" r="14" fill="#fff" filter="drop-shadow(0 0 12px var(--accent))"/>
+          <line x1="50" y1="10" x2="50" y2="90" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="10" y1="50" x2="90" y2="50" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Right Clashing Scissors -->
+          <g transform="translate(100, 0)">
+            <circle cx="50" cy="50" r="65" fill="rgba(18,18,24,0.85)" stroke="var(--color-snow-white)" stroke-width="3"/>
+            <path d="M40 30L60 52M60 30L40 52M42 56C42 62 48 66 54 66H60" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <!-- HUD Telemetry & Cyclic Graph Metadata -->
+        <g transform="translate(780, 680)" font-family="'DM Sans', sans-serif" opacity="0.8">
+          <rect x="0" y="0" width="340" height="36" rx="8" fill="rgba(20,20,28,0.85)" stroke="var(--color-hairline)"/>
+          <circle cx="16" cy="18" r="4" fill="var(--accent)"/>
+          <text x="30" y="22" fill="var(--color-bone)" font-size="12" font-weight="700" letter-spacing="1">CYCLIC GRAPH // 5-CHOICE LIZARD-SPOCK</text>
+        </g>
+      </svg>`;
+    }
+
+    case 'connect4': {
+      return `<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        ${glow}
+        <!-- Isometric Liquid Glass Cabinet in Perspective -->
+        <g transform="translate(760, 260) skewY(-6) scale(0.9, 0.9)">
+          <!-- Glass Cabinet Shell -->
+          <rect x="0" y="0" width="540" height="460" rx="24" fill="rgba(18,22,34,0.85)" stroke="var(--color-hairline)" stroke-width="2"/>
+          <rect x="12" y="12" width="516" height="436" rx="18" fill="rgba(24,28,42,0.6)" stroke="rgba(255,255,255,0.1)" stroke-width="1.2"/>
+
+          <!-- Grid of Cutout Circular Slots -->
+          ${[0, 1, 2, 3, 4, 5, 6].map(c => [0, 1, 2, 3, 4, 5].map(r => `
+            <circle cx="${45 + c * 75}" cy="${46 + r * 74}" r="27" fill="#08090e" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+          `).join('')).join('')}
+
+          <!-- Glowing 3D Discs Falling & Connected -->
+          <!-- Red 4-Streak -->
+          <circle cx="120" cy="416" r="25" fill="#ff4034" filter="drop-shadow(0 0 12px rgba(255,64,52,0.8))"/>
+          <circle cx="195" cy="342" r="25" fill="#ff4034" filter="drop-shadow(0 0 12px rgba(255,64,52,0.8))"/>
+          <circle cx="270" cy="268" r="25" fill="#ff4034" filter="drop-shadow(0 0 12px rgba(255,64,52,0.8))"/>
+          <circle cx="345" cy="194" r="25" fill="#ff4034" filter="drop-shadow(0 0 16px rgba(255,64,52,0.9))"/>
+
+          <!-- Yellow Rival Discs -->
+          <circle cx="120" cy="342" r="25" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+          <circle cx="195" cy="416" r="25" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+          <circle cx="270" cy="342" r="25" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+          <circle cx="270" cy="416" r="25" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+          <circle cx="345" cy="416" r="25" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+          <circle cx="345" cy="342" r="25" fill="#ff4034" filter="drop-shadow(0 0 10px rgba(255,64,52,0.7))"/>
+          <circle cx="345" cy="268" r="25" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+
+          <!-- Laser Connecting Slash Line -->
+          <line x1="120" y1="416" x2="345" y2="194" stroke="#ff4034" stroke-width="4.5" stroke-linecap="round" filter="drop-shadow(0 0 14px rgba(255,64,52,0.9))"/>
+        </g>
+
+        <!-- Ambient Concentric Orbit Rings -->
+        <g transform="translate(1030, 480)" opacity="0.4">
+          <circle cx="0" cy="0" r="320" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="8 6"/>
+          <circle cx="0" cy="0" r="220" fill="none" stroke="var(--color-bone)" stroke-width="0.8" stroke-dasharray="4 8"/>
+        </g>
+
+        <!-- HUD Telemetry Metadata -->
+        <g transform="translate(760, 720)" font-family="'DM Sans', sans-serif" opacity="0.85">
+          <rect x="0" y="0" width="360" height="36" rx="8" fill="rgba(20,24,36,0.85)" stroke="var(--color-hairline)"/>
+          <circle cx="16" cy="18" r="4" fill="var(--accent)"/>
+          <text x="30" y="22" fill="var(--color-bone)" font-size="12" font-weight="700" letter-spacing="1">VERTICAL DISC STACK // 4-IN-A-ROW</text>
+        </g>
+      </svg>`;
+    }
+
+    case 'playing_cards': {
+      return `<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        ${glow}
+        <!-- Holographic Playing Cards in Dynamic Perspective -->
+        <g transform="translate(820, 260) skewY(-5) scale(0.95, 0.95)">
+          <!-- Card Back 1 (Rotated) -->
+          <g transform="translate(40, 60) rotate(-14)">
+            <rect x="0" y="0" width="180" height="260" rx="14" fill="#0d0d14" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+            <rect x="10" y="10" width="160" height="240" rx="10" fill="#14141e" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <circle cx="90" cy="130" r="32" fill="#1a1a28" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="90" y="138" text-anchor="middle" fill="var(--accent)" font-family="'DM Sans', sans-serif" font-weight="900" font-size="24">🂠</text>
+          </g>
+
+          <!-- Ace of Spades (Hero Face Card) -->
+          <g transform="translate(180, 40) rotate(6)" filter="drop-shadow(0 12px 28px rgba(0,0,0,0.7))">
+            <rect x="0" y="0" width="190" height="270" rx="14" fill="#181822" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+            <text x="24" y="38" fill="#38bdf8" font-family="'DM Sans', sans-serif" font-weight="900" font-size="24">A</text>
+            <text x="24" y="58" fill="#38bdf8" font-size="16">♠</text>
+            <circle cx="95" cy="135" r="46" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3 3"/>
+            <path d="M95 100 C92 110 75 125 75 140 C75 150 83 158 93 158 C96 158 100 156 101 154 C99 160 93 168 87 170 H103 C97 168 91 160 89 154 C90 156 94 158 97 158 C107 158 115 150 115 140 C115 125 98 110 95 100 Z" fill="#38bdf8" filter="drop-shadow(0 0 16px rgba(56,189,248,0.7))"/>
+            <text x="166" y="246" fill="#38bdf8" font-family="'DM Sans', sans-serif" font-weight="900" font-size="24" text-anchor="end">A</text>
+            <text x="166" y="262" fill="#38bdf8" font-size="16" text-anchor="end">♠</text>
+          </g>
+
+          <!-- King of Hearts -->
+          <g transform="translate(320, 80) rotate(18)" filter="drop-shadow(0 10px 24px rgba(0,0,0,0.6))">
+            <rect x="0" y="0" width="180" height="260" rx="14" fill="#181822" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+            <text x="22" y="36" fill="#e5484d" font-family="'DM Sans', sans-serif" font-weight="900" font-size="22">K</text>
+            <text x="22" y="54" fill="#e5484d" font-size="15">♥</text>
+            <path d="M90 120 C76 100 60 114 60 128 C60 148 90 168 90 168 C90 168 120 148 120 128 C120 114 104 100 90 120 Z" fill="#e5484d" filter="drop-shadow(0 0 14px rgba(229,72,77,0.7))"/>
+            <text x="158" y="238" fill="#e5484d" font-family="'DM Sans', sans-serif" font-weight="900" font-size="22" text-anchor="end">K</text>
+          </g>
+
+          <!-- Casino Chip Stacks -->
+          <g transform="translate(140, 290)">
+            <ellipse cx="0" cy="20" rx="36" ry="12" fill="#e5484d" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <ellipse cx="0" cy="12" rx="36" ry="12" fill="#f59e0b" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <ellipse cx="0" cy="4" rx="36" ry="12" fill="#38bdf8" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <ellipse cx="0" cy="-4" rx="36" ry="12" fill="#10b981" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="0" y="0" text-anchor="middle" fill="#fff" font-family="'DM Sans', sans-serif" font-weight="900" font-size="11">$100</text>
+          </g>
+        </g>
+
+        <!-- Ambient Concentric Orbit Rings -->
+        <g transform="translate(1030, 480)" opacity="0.4">
+          <circle cx="0" cy="0" r="320" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="8 6"/>
+          <circle cx="0" cy="0" r="220" fill="none" stroke="var(--color-bone)" stroke-width="0.8" stroke-dasharray="4 8"/>
+        </g>
+
+        <!-- HUD Telemetry Metadata -->
+        <g transform="translate(760, 720)" font-family="'DM Sans', sans-serif" opacity="0.85">
+          <rect x="0" y="0" width="380" height="36" rx="8" fill="rgba(20,24,36,0.85)" stroke="var(--color-hairline)"/>
+          <circle cx="16" cy="18" r="4" fill="var(--accent)"/>
+          <text x="30" y="22" fill="var(--color-bone)" font-size="12" font-weight="700" letter-spacing="1">52-CARD SUITE // BLACKJACK · WAR · MEMORY</text>
+        </g>
+      </svg>`;
+    }
   }
 }
 
@@ -1867,6 +2528,319 @@ export function renderActivityThumb(gameType, idx = 0) {
           <rect x="0" y="0" width="34" height="34" rx="7" fill="#FFF" stroke="#D4D4D8" stroke-width="1.8"/>
           <circle cx="9" cy="8" r="2.5" fill="#18181B"/><circle cx="9" cy="17" r="2.5" fill="#18181B"/><circle cx="9" cy="26" r="2.5" fill="#18181B"/>
           <circle cx="25" cy="8" r="2.5" fill="#18181B"/><circle cx="25" cy="17" r="2.5" fill="#18181B"/><circle cx="25" cy="26" r="2.5" fill="#18181B"/>
+        </g>
+      `;
+    },
+
+    // ------------------------------------------------------------------------
+    // TIC-TAC-TOE
+    // ------------------------------------------------------------------------
+    tic_tac_toe: (i) => {
+      if (i === 1) {
+        // Misère Mode: 3-in-a-row loses
+        return `
+          <path d="M 106 30 L 106 150 M 213 30 L 213 150 M 50 70 L 270 70 M 50 110 L 270 110" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-linecap="round"/>
+          <g stroke="#EF4444" stroke-width="4" stroke-linecap="round">
+            <line x1="70" y1="42" x2="88" y2="58"/><line x1="88" y1="42" x2="70" y2="58"/>
+            <line x1="151" y1="42" x2="169" y2="58"/><line x1="169" y1="42" x2="151" y2="58"/>
+            <line x1="232" y1="42" x2="250" y2="58"/><line x1="250" y1="42" x2="232" y2="58"/>
+          </g>
+          <line x1="55" y1="50" x2="265" y2="50" stroke="#EF4444" stroke-width="3" stroke-dasharray="6 4"/>
+          <g transform="translate(160, 130)">
+            <rect x="-65" y="-14" width="130" height="28" rx="14" fill="#18181B" stroke="#EF4444" stroke-width="1.5"/>
+            <text x="0" y="4" text-anchor="middle" fill="#EF4444" font-family="'DM Sans', sans-serif" font-weight="800" font-size="11" letter-spacing="0.5">3-IN-A-ROW LOSES</text>
+          </g>
+        `;
+      }
+      if (i === 2) {
+        // Extended 4x4 Grid
+        return `
+          <g stroke="rgba(255,255,255,0.12)" stroke-width="1.5">
+            <line x1="110" y1="20" x2="110" y2="160"/><line x1="160" y1="20" x2="160" y2="160"/><line x1="210" y1="20" x2="210" y2="160"/>
+            <line x1="60" y1="55" x2="260" y2="55"/><line x1="60" y1="90" x2="260" y2="90"/><line x1="60" y1="125" x2="260" y2="125"/>
+          </g>
+          ${[0, 1, 2, 3].map(step => `
+            <circle cx="${85 + step * 50}" cy="${37.5 + step * 35}" r="11" fill="var(--accent)" stroke="#fff" stroke-width="1.5"/>
+          `).join('')}
+          <line x1="75" y1="30" x2="245" y2="150" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+          <g transform="translate(160, 165)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">4×4 GRID · 4-IN-A-ROW</text>
+          </g>
+        `;
+      }
+      if (i === 3) {
+        // Extended 5x5 Grid
+        return `
+          <g stroke="rgba(255,255,255,0.08)" stroke-width="1.2">
+            ${[100, 130, 160, 190].map(x => `<line x1="${x}" y1="20" x2="${x}" y2="150"/>`).join('')}
+            ${[46, 72, 98, 124].map(y => `<line x1="70" y1="${y}" x2="220" y2="${y}"/>`).join('')}
+          </g>
+          ${[0, 1, 2, 3].map(step => `
+            <rect x="${105 + step * 30}" y="77" width="20" height="16" rx="4" fill="var(--accent)"/>
+          `).join('')}
+          <line x1="100" y1="85" x2="225" y2="85" stroke="#fff" stroke-width="2"/>
+          <g transform="translate(160, 165)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">5×5 MATRIX · SLIDING 4</text>
+          </g>
+        `;
+      }
+      if (i === 4) {
+        // Ultimate Tic-Tac-Toe
+        return `
+          <g stroke="var(--accent)" stroke-width="3" stroke-linecap="round">
+            <line x1="120" y1="20" x2="120" y2="160"/><line x1="200" y1="20" x2="200" y2="160"/>
+            <line x1="40" y1="66" x2="280" y2="66"/><line x1="40" y1="114" x2="280" y2="114"/>
+          </g>
+          <rect x="125" y="71" width="70" height="38" rx="6" fill="rgba(56,189,248,0.22)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 2"/>
+          <path d="M 80 43 Q 120 40 160 85" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="80" cy="43" r="3" fill="#F59E0B"/>
+          <polygon points="160,85 152,78 156,88" fill="#F59E0B"/>
+          <text x="80" y="100" text-anchor="middle" fill="var(--accent)" font-family="'DM Sans', sans-serif" font-weight="900" font-size="28" opacity="0.8">X</text>
+          <text x="240" y="55" text-anchor="middle" fill="#EF4444" font-family="'DM Sans', sans-serif" font-weight="900" font-size="28" opacity="0.8">O</text>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">ULTIMATE · TARGET ROUTING</text>
+          </g>
+        `;
+      }
+      // Default / idx === 0: Classic 3x3 Minimax
+      return `
+        <g stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round">
+          <line x1="120" y1="25" x2="120" y2="155"/><line x1="200" y1="25" x2="200" y2="155"/>
+          <line x1="45" y1="68" x2="275" y2="68"/><line x1="45" y1="112" x2="275" y2="112"/>
+        </g>
+        <g stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round">
+          <line x1="68" y1="36" x2="96" y2="58"/><line x1="96" y1="36" x2="68" y2="58"/>
+          <line x1="148" y1="78" x2="172" y2="102"/><line x1="172" y1="78" x2="148" y2="102"/>
+          <line x1="228" y1="122" x2="252" y2="146"/><line x1="252" y1="122" x2="228" y2="146"/>
+        </g>
+        <circle cx="160" cy="47" r="14" fill="none" stroke="#F59E0B" stroke-width="4"/>
+        <circle cx="82" cy="90" r="14" fill="none" stroke="#F59E0B" stroke-width="4"/>
+        <line x1="55" y1="25" x2="265" y2="155" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        <g transform="translate(250, 40)">
+          <rect x="-35" y="-12" width="70" height="24" rx="6" fill="#18181B" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="0" y="4" text-anchor="middle" fill="var(--accent)" font-family="'DM Sans', sans-serif" font-weight="800" font-size="9">MINIMAX</text>
+        </g>
+      `;
+    },
+    rock_paper_scissors: (i) => {
+      if (i === 1) {
+        // RPSLS 5-Choice Pentagram
+        return `
+          <g transform="translate(160, 85)">
+            <polygon points="0,-55 52,-17 32,45 -32,45 -52,-17" fill="rgba(16,185,129,0.12)" stroke="var(--accent)" stroke-width="2"/>
+            <polygon points="0,-55 32,45 -52,-17 52,-17 -32,45" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.6"/>
+            <circle cx="0" cy="-55" r="7" fill="#18181B" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="52" cy="-17" r="7" fill="#18181B" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="32" cy="45" r="7" fill="#18181B" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="-32" cy="45" r="7" fill="#18181B" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="-52" cy="-17" r="7" fill="#18181B" stroke="var(--accent)" stroke-width="2"/>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">RPSLS · 5-WEAPON GRAPH</text>
+          </g>
+        `;
+      }
+      if (i === 2) {
+        // Endless Streak Flame
+        return `
+          <g transform="translate(160, 78)">
+            <circle cx="0" cy="0" r="38" fill="rgba(245,158,11,0.12)" stroke="#F59E0B" stroke-width="2"/>
+            <path d="M0 -24 C10 -10 18 -4 14 12 C10 24 -10 24 -14 12 C-18 -4 -10 -10 0 -24 Z" fill="#F59E0B" opacity="0.85"/>
+            <path d="M0 -12 C5 -4 9 0 7 8 C5 14 -5 14 -7 8 C-9 0 -5 -4 0 -12 Z" fill="#fff"/>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">ENDLESS STREAK · FLAME CHALLENGE</text>
+          </g>
+        `;
+      }
+      if (i === 3) {
+        // 2P Host Duel
+        return `
+          <g transform="translate(160, 80)">
+            <circle cx="-45" cy="0" r="28" fill="rgba(18,18,24,0.8)" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="45" cy="0" r="28" fill="rgba(18,18,24,0.8)" stroke="#fff" stroke-width="2"/>
+            <text x="-45" y="7" text-anchor="middle" fill="var(--accent)" font-family="'DM Sans', sans-serif" font-weight="900" font-size="16">P1</text>
+            <text x="45" y="7" text-anchor="middle" fill="#fff" font-family="'DM Sans', sans-serif" font-weight="900" font-size="16">P2</text>
+            <circle cx="0" cy="0" r="10" fill="#18181B" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="0" y="4" text-anchor="middle" fill="#F59E0B" font-family="'DM Sans', sans-serif" font-weight="800" font-size="10">VS</text>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">2-PLAYER · HEAD-TO-HEAD DUEL</text>
+          </g>
+        `;
+      }
+      // Default / i === 0: Classic Rock vs Scissors
+      return `
+        <g transform="translate(160, 78)">
+          <circle cx="-42" cy="0" r="32" fill="rgba(18,18,24,0.85)" stroke="var(--accent)" stroke-width="2.2"/>
+          <circle cx="42" cy="0" r="32" fill="rgba(18,18,24,0.85)" stroke="#fff" stroke-width="2.2"/>
+          <text x="-42" y="8" text-anchor="middle" font-size="22">✊</text>
+          <text x="42" y="8" text-anchor="middle" font-size="22">✌️</text>
+          <line x1="-10" y1="0" x2="10" y2="0" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(160, 168)">
+          <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">CLASSIC BEST-OF-3</text>
+        </g>
+      `;
+    },
+    connect4: (i) => {
+      if (i === 1) {
+        // Pop Out Mode: bottom disc ejection
+        return `
+          <g transform="translate(160, 75)">
+            <rect x="-80" y="-55" width="160" height="110" rx="12" fill="rgba(20,24,36,0.85)" stroke="var(--color-hairline)"/>
+            <!-- 3 Columns of Cutouts -->
+            ${[-45, 0, 45].map(x => `
+              <circle cx="${x}" cy="-25" r="14" fill="#08090e" stroke="rgba(255,255,255,0.1)"/>
+              <circle cx="${x}" cy="10" r="14" fill="#08090e" stroke="rgba(255,255,255,0.1)"/>
+            `).join('')}
+            <circle cx="-45" cy="-25" r="12" fill="#ff4034"/>
+            <circle cx="0" cy="-25" r="12" fill="#facc15"/>
+            <circle cx="45" cy="-25" r="12" fill="#ff4034"/>
+            <circle cx="-45" cy="10" r="12" fill="#facc15"/>
+            <circle cx="45" cy="10" r="12" fill="#facc15"/>
+            <!-- Popped Disc falling out bottom -->
+            <g transform="translate(0, 38)">
+              <circle cx="0" cy="0" r="12" fill="#ff4034" filter="drop-shadow(0 0 8px rgba(255,64,52,0.8))"/>
+              <text x="0" y="4" text-anchor="middle" fill="#fff" font-size="10" font-weight="900">⏏</text>
+            </g>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">POP OUT · GRAVITY SHIFT</text>
+          </g>
+        `;
+      }
+      if (i === 2) {
+        // 5-in-a-Row 9x7 Matrix
+        return `
+          <g transform="translate(160, 75)">
+            <rect x="-100" y="-55" width="200" height="110" rx="12" fill="rgba(20,24,36,0.85)" stroke="var(--color-hairline)"/>
+            <!-- 5 connected discs -->
+            ${[-60, -30, 0, 30, 60].map(x => `
+              <circle cx="${x}" cy="10" r="11" fill="#ff4034" filter="drop-shadow(0 0 6px rgba(255,64,52,0.7))"/>
+            `).join('')}
+            <!-- Connecting laser -->
+            <line x1="-60" y1="10" x2="60" y2="10" stroke="#ff4034" stroke-width="2.5" filter="drop-shadow(0 0 6px rgba(255,64,52,0.9))"/>
+            <!-- Background slots -->
+            ${[-60, -30, 0, 30, 60].map(x => `
+              <circle cx="${x}" cy="-20" r="11" fill="#08090e" stroke="rgba(255,255,255,0.08)"/>
+            `).join('')}
+            <circle cx="0" cy="-20" r="9" fill="#facc15"/>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">5-IN-A-ROW · 9×7 EXPANDED</text>
+          </g>
+        `;
+      }
+      if (i === 3) {
+        // Blitz Mode: Lightning countdown
+        return `
+          <g transform="translate(160, 75)">
+            <circle cx="0" cy="0" r="42" fill="rgba(20,24,36,0.9)" stroke="var(--c4-yellow)" stroke-width="2.5" stroke-dasharray="8 4"/>
+            <circle cx="0" cy="0" r="32" fill="#ff4034" filter="drop-shadow(0 0 12px rgba(255,64,52,0.8))"/>
+            <text x="0" y="8" text-anchor="middle" font-size="24">⚡</text>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">BLITZ · 5S COUNTDOWN</text>
+          </g>
+        `;
+      }
+      if (i === 4) {
+        // Host 2P Multiplayer Room
+        return `
+          <g transform="translate(160, 78)">
+            <circle cx="-42" cy="0" r="28" fill="#ff4034" filter="drop-shadow(0 0 10px rgba(255,64,52,0.7))"/>
+            <circle cx="42" cy="0" r="28" fill="#facc15" filter="drop-shadow(0 0 10px rgba(250,204,21,0.7))"/>
+            <text x="-42" y="6" text-anchor="middle" fill="#fff" font-family="'DM Sans', sans-serif" font-weight="900" font-size="15">RED</text>
+            <text x="42" y="6" text-anchor="middle" fill="#000" font-family="'DM Sans', sans-serif" font-weight="900" font-size="14">YEL</text>
+            <circle cx="0" cy="0" r="12" fill="#141722" stroke="var(--color-hairline)" stroke-width="1.5"/>
+            <text x="0" y="4" text-anchor="middle" fill="#fff" font-family="'DM Sans', sans-serif" font-weight="800" font-size="9">VS</text>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">2-PLAYER · ONLINE / PASS & PLAY</text>
+          </g>
+        `;
+      }
+      // Default / i === 0: Classic 7x6 4-Streak
+      return `
+        <g transform="translate(160, 75)">
+          <rect x="-80" y="-55" width="160" height="110" rx="12" fill="rgba(20,24,36,0.85)" stroke="var(--color-hairline)"/>
+          <!-- Diagonal 4-Streak -->
+          <circle cx="-45" cy="25" r="12" fill="#ff4034" filter="drop-shadow(0 0 8px rgba(255,64,52,0.8))"/>
+          <circle cx="-15" cy="0" r="12" fill="#ff4034" filter="drop-shadow(0 0 8px rgba(255,64,52,0.8))"/>
+          <circle cx="15" cy="-25" r="12" fill="#ff4034" filter="drop-shadow(0 0 8px rgba(255,64,52,0.8))"/>
+          <circle cx="45" cy="-50" r="12" fill="#ff4034" filter="drop-shadow(0 0 10px rgba(255,64,52,0.9))"/>
+          <line x1="-45" y1="25" x2="45" y2="-50" stroke="#ff4034" stroke-width="3" stroke-linecap="round" filter="drop-shadow(0 0 8px rgba(255,64,52,0.9))"/>
+          <!-- Other slots -->
+          <circle cx="-45" cy="0" r="12" fill="#facc15"/>
+          <circle cx="-15" cy="25" r="12" fill="#facc15"/>
+          <circle cx="15" cy="0" r="12" fill="#facc15"/>
+        </g>
+        <g transform="translate(160, 168)">
+          <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">CLASSIC 7×6 · 4-IN-A-ROW</text>
+        </g>
+      `;
+    },
+    playing_cards: (i) => {
+      if (i === 1) {
+        // War: Swords clash & cards
+        return `
+          <g transform="translate(160, 75)">
+            <rect x="-65" y="-45" width="55" height="85" rx="6" fill="#181824" stroke="rgba(255,255,255,0.2)"/>
+            <text x="-48" y="-20" fill="#38bdf8" font-size="14" font-weight="900">A♠</text>
+            <rect x="10" y="-45" width="55" height="85" rx="6" fill="#181824" stroke="rgba(255,255,255,0.2)"/>
+            <text x="28" y="-20" fill="#e5484d" font-size="14" font-weight="900">K♥</text>
+            <text x="0" y="5" text-anchor="middle" font-size="28">⚔️</text>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">WAR · HIGH CARD BATTLE</text>
+          </g>
+        `;
+      }
+      if (i === 2) {
+        // Memory: 3D flipped grid
+        return `
+          <g transform="translate(160, 75)">
+            <rect x="-60" y="-40" width="35" height="50" rx="4" fill="#181824" stroke="#10b981" stroke-width="1.5"/>
+            <text x="-43" y="-10" text-anchor="middle" fill="#10b981" font-size="16" font-weight="900">Q♦</text>
+            <rect x="-17" y="-40" width="35" height="50" rx="4" fill="#181824" stroke="#10b981" stroke-width="1.5"/>
+            <text x="0" y="-10" text-anchor="middle" fill="#10b981" font-size="16" font-weight="900">Q♦</text>
+            <rect x="25" y="-40" width="35" height="50" rx="4" fill="#0d0d14" stroke="rgba(255,255,255,0.15)"/>
+            <text x="42" y="-10" text-anchor="middle" fill="var(--accent)" font-size="16">🂠</text>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">MEMORY · CONCENTRATION</text>
+          </g>
+        `;
+      }
+      if (i === 3) {
+        // High-Low: Up/Down arrow multipliers
+        return `
+          <g transform="translate(160, 75)">
+            <rect x="-35" y="-50" width="70" height="95" rx="8" fill="#181824" stroke="var(--cards-diamond, #f59e0b)" stroke-width="2"/>
+            <text x="-20" y="-25" fill="#f59e0b" font-size="16" font-weight="900">8♦</text>
+            <text x="0" y="10" text-anchor="middle" font-size="26">⬆️</text>
+            <text x="0" y="32" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="900">12.0×</text>
+          </g>
+          <g transform="translate(160, 168)">
+            <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">HIGH-LOW · STREAK MULTIPLIER</text>
+          </g>
+        `;
+      }
+      // Default / i === 0: Blackjack
+      return `
+        <g transform="translate(160, 75)">
+          <rect x="-55" y="-45" width="55" height="85" rx="6" fill="#181824" stroke="rgba(255,255,255,0.2)"/>
+          <text x="-38" y="-20" fill="#38bdf8" font-size="14" font-weight="900">A♠</text>
+          <rect x="-10" y="-45" width="55" height="85" rx="6" fill="#181824" stroke="rgba(255,255,255,0.2)"/>
+          <text x="8" y="-20" fill="#e5484d" font-size="14" font-weight="900">J♥</text>
+          <g transform="translate(45, 15)">
+            <circle cx="0" cy="0" r="16" fill="#f59e0b" stroke="#fff" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <text x="0" y="4" text-anchor="middle" fill="#000" font-size="9" font-weight="900">21</text>
+          </g>
+        </g>
+        <g transform="translate(160, 168)">
+          <text x="0" y="0" text-anchor="middle" fill="var(--color-bone)" font-family="'DM Sans', sans-serif" font-weight="700" font-size="11">BLACKJACK · 21 VS DEALER</text>
         </g>
       `;
     },
