@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}About This Project{% endblock %}
+
+{% block content %}
+<div class="game-header">
+    <a href="/" class="back-link">← Back to Lobby</a>
+    <h1 class="page-title">About Mini Arcade</h1>
+    <p class="page-subtitle">A CS50 Final Project exploring full-stack web development and game algorithms.</p>
+</div>
+
+<div class="about-container">
+    <section class="about-section">
+        <h2>🎯 Project Overview</h2>
+        <p>
+            <strong>Mini Arcade</strong> is a web gaming hub featuring four classic games:
+            <strong>Tic-Tac-Toe</strong>, <strong>Connect 4</strong>, <strong>Rock-Paper-Scissors (with Lizard-Spock)</strong>,
+            and a <strong>52-card Playing Cards Suite (High-Low & Blackjack)</strong>.
+        </p>
+        <p>
+            The project was built for <em>CS50: Introduction to Computer Science</em> to demonstrate full-stack fundamentals:
+            writing clean backend routes and game logic in Python with Flask, designing responsive templates with Jinja2 and HTML/CSS,
+            and creating interactive game boards using client-side JavaScript that communicate with the server via the Fetch API.
+        </p>
+    </section>
+
+    <section class="about-section">
+        <h2>🛠️ Technologies Used</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <span class="tech-icon">🐍</span>
+                <h3>Python & Flask</h3>
+                <p>Handles server routing, session state management, AI move computation, and win/tie validation.</p>
+            </div>
+            <div class="tech-card">
+                <span class="tech-icon">🌐</span>
+                <h3>HTML5 & Jinja2</h3>
+                <p>Semantic page structures with template inheritance (<code>layout.html</code>) for a DRY, modular codebase.</p>
+            </div>
+            <div class="tech-card">
+                <span class="tech-icon">🎨</span>
+                <h3>Modern CSS</h3>
+                <p>Custom arcade theme featuring CSS grid, flexbox layouts, glowing status banners, and mobile responsiveness.</p>
+            </div>
+            <div class="tech-card">
+                <span class="tech-icon">⚡</span>
+                <h3>Vanilla JavaScript</h3>
+                <p>Event-driven DOM updates, asynchronous <code>fetch()</code> requests, and dynamic board rendering with zero heavy frameworks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2>🧠 Key Algorithms & Game Mechanics</h2>
+        <ul class="about-list">
+            <li>
+                <strong>Minimax Algorithm (Tic-Tac-Toe):</strong> 
+                The unbeatable AI uses recursive minimax tree evaluation with depth discounting, maximizing the computer's score while minimizing the player's potential outcomes.
+            </li>
+            <li>
+                <strong>Grid Gravity & 4-Directional Scan (Connect 4):</strong> 
+                Discs fall to the lowest empty slot in a 6x7 matrix. Win detection checks horizontal, vertical, and both diagonal slopes using vector offsets.
+            </li>
+            <li>
+                <strong>Cyclic Graph Evaluation (Rock-Paper-Scissors-Lizard-Spock):</strong> 
+                Evaluates win conditions using a rule dictionary that maps each hand gesture to the two gestures it defeats, returning detailed pedagogical explanations.
+            </li>
+            <li>
+                <strong>Fisher-Yates Deck Shuffling & Dynamic Ace Scoring (Cards):</strong> 
+                Cards are shuffled using Python's random distribution. The Blackjack engine dynamically adjusts Ace values from 11 to 1 whenever a hand exceeds 21.
+            </li>
+        </ul>
+    </section>
+
+    <section class="about-section">
+        <h2>🚀 Running Locally</h2>
+        <div class="code-box">
+            <pre><code># 1. Clone the repository
+git clone https://github.com/Mhmoudahmed3/Kemetgames.git
+cd "games website"
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Start the Flask application
+python app.py
+
+# 4. Open in browser at http://127.0.0.1:5000</code></pre>
+        </div>
+    </section>
+</div>
+{% endblock %}

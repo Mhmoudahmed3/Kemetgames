@@ -1,4 +1,4 @@
 @echo off
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0start.ps1"
+echo Starting Mini Arcade...
+python app.py
 pause
-

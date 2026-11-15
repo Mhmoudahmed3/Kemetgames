@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}Rock-Paper-Scissors{% endblock %}
+
+{% block content %}
+<div class="game-header">
+    <a href="/" class="back-link">← Back to Lobby</a>
+    <h1 class="page-title">Rock-Paper-Scissors</h1>
+    <p class="page-subtitle">Classic hand battle & the expanded 5-choice Lizard-Spock edition!</p>
+</div>
+
+<div class="game-arena">
+    <!-- Controls & Settings -->
+    <div class="control-panel">
+        <div class="control-group">
+            <label for="rps-mode">Variant:</label>
+            <select id="rps-mode" class="select-input">
+                <option value="classic" selected>Classic (3 Choices)</option>
+                <option value="lizard-spock">RPS-Lizard-Spock (5 Choices)</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="rps-format">Match Format:</label>
+            <select id="rps-format" class="select-input">
+                <option value="endless" selected>Endless (Streak Mode)</option>
+                <option value="bo3">Best of 3</option>
+                <option value="bo5">Best of 5</option>
+            </select>
+        </div>
+
+        <button id="rps-reset-btn" class="btn btn-secondary">Reset Score</button>
+    </div>
+
+    <!-- Scoreboard -->
+    <div class="scoreboard">
+        <div class="score-card player-x">
+            <span class="score-label">You</span>
+            <span class="score-value" id="rps-player-score">0</span>
+        </div>
+        <div class="score-card ties">
+            <span class="score-label">Ties</span>
+            <span class="score-value" id="rps-tie-score">0</span>
+        </div>
+        <div class="score-card player-o">
+            <span class="score-label">Computer</span>
+            <span class="score-value" id="rps-cpu-score">0</span>
+        </div>
+        <div class="score-card streak">
+            <span class="score-label">🔥 Streak</span>
+            <span class="score-value" id="rps-streak">0</span>
+        </div>
+    </div>
+
+    <!-- Battle Arena Display -->
+    <div class="rps-battlefield">
+        <div class="rps-fighter" id="player-fighter">
+            <div class="fighter-title">Your Choice</div>
+            <div class="fighter-display" id="player-choice-icon">❓</div>
+            <div class="fighter-name" id="player-choice-name">Waiting...</div>
+        </div>
+
+        <div class="rps-vs">VS</div>
+
+        <div class="rps-fighter" id="cpu-fighter">
+            <div class="fighter-title">Computer</div>
+            <div class="fighter-display" id="cpu-choice-icon">❓</div>
+            <div class="fighter-name" id="cpu-choice-name">Waiting...</div>
+        </div>
+    </div>
+
+    <!-- Round Result Banner -->
+    <div class="status-banner" id="rps-status">
+        Choose your move below to begin!
+    </div>
+
+    <!-- Choice Buttons -->
+    <div class="rps-choices" id="rps-choices">
+        <button class="rps-btn" data-choice="rock">
+            <span class="rps-icon">✊</span>
+            <span class="rps-label">Rock</span>
+        </button>
+        <button class="rps-btn" data-choice="paper">
+            <span class="rps-icon">✋</span>
+            <span class="rps-label">Paper</span>
+        </button>
+        <button class="rps-btn" data-choice="scissors">
+            <span class="rps-icon">✌️</span>
+            <span class="rps-label">Scissors</span>
+        </button>
+        <button class="rps-btn rps-extra" data-choice="lizard" style="display: none;">
+            <span class="rps-icon">🦎</span>
+            <span class="rps-label">Lizard</span>
+        </button>
+        <button class="rps-btn rps-extra" data-choice="spock" style="display: none;">
+            <span class="rps-icon">🖖</span>
+            <span class="rps-label">Spock</span>
+        </button>
+    </div>
+
+    <!-- Rule Guide -->
+    <div class="rps-rules-box">
+        <h3>📜 Rules & Win Guide</h3>
+        <p id="rules-classic-text"><strong>Classic:</strong> Rock crushes Scissors • Scissors cuts Paper • Paper covers Rock</p>
+        <p id="rules-ls-text" style="display: none;">
+            <strong>Lizard-Spock:</strong> Scissors cuts Paper • Paper covers Rock • Rock crushes Lizard • Lizard poisons Spock • Spock smashes Scissors • Scissors decapitates Lizard • Lizard eats Paper • Paper disproves Spock • Spock vaporizes Rock • Rock crushes Scissors
+        </p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/rps.js') }}"></script>
+{% endblock %}

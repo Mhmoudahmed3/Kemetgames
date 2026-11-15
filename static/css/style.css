@@ -1,0 +1,949 @@
+/* ====================================================
+   Mini Arcade - Main Stylesheet (CS50 Final Project)
+   Clean, modern, responsive CSS styling for game hub.
+   ==================================================== */
+
+:root {
+    --bg-main: #0b0f19;
+    --bg-surface: #151d2f;
+    --bg-card: #1c263c;
+    --border-color: #2a3754;
+    --border-hover: #3b4d75;
+    
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #06b6d4;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --font-heading: 'Outfit', sans-serif;
+    --font-pixel: 'Press Start 2P', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* ====================================================
+   Navigation Bar
+   ==================================================== */
+.navbar {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-main);
+}
+
+.nav-about {
+    background-color: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.nav-about:hover {
+    background-color: rgba(99, 102, 241, 0.3);
+    color: #ffffff;
+}
+
+/* ====================================================
+   Page Container & Layout
+   ==================================================== */
+.main-content {
+    flex: 1;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 1050px;
+}
+
+/* ====================================================
+   Hero Section
+   ==================================================== */
+.hero-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+.hero-title .highlight {
+    background: linear-gradient(135deg, #818cf8, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* ====================================================
+   Games Grid & Cards (Lobby)
+   ==================================================== */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.game-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.25);
+}
+
+.game-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+}
+
+.game-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.game-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.game-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 1.25rem;
+    flex: 1;
+}
+
+.game-features {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    font-family: var(--font-heading);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-hover);
+}
+
+/* Banner */
+.cs50-banner {
+    background-color: var(--bg-surface);
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cs50-badge {
+    background-color: #dc2626;
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+.banner-link {
+    color: var(--secondary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.banner-link:hover {
+    text-decoration: underline;
+}
+
+/* ====================================================
+   Game Arena & Header Shared Styles
+   ==================================================== */
+.game-header {
+    margin-bottom: 1.75rem;
+    text-align: center;
+    position: relative;
+}
+
+.back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text-main);
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.game-arena {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Control Panel */
+.control-panel {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.select-input {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.select-input:focus {
+    border-color: var(--primary);
+}
+
+/* Scoreboard */
+.scoreboard {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 480px;
+    justify-content: center;
+}
+
+.score-card {
+    flex: 1;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: all 0.2s;
+}
+
+.score-card.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+.score-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.score-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Status Banner */
+.status-banner {
+    background-color: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    color: #c7d2fe;
+    padding: 0.85rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1.75rem;
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+}
+
+.status-banner.win {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.35);
+    color: #6ee7b7;
+}
+
+.status-banner.loss {
+    background-color: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.35);
+    color: #fca5a5;
+}
+
+.status-banner.tie {
+    background-color: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.35);
+    color: #fde68a;
+}
+
+/* ====================================================
+   Tic-Tac-Toe Board
+   ==================================================== */
+.ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 12px;
+    background-color: var(--bg-card);
+    padding: 12px;
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+}
+
+.ttt-cell {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.ttt-cell:hover:not(:disabled) {
+    background-color: rgba(99, 102, 241, 0.15);
+    border-color: var(--primary);
+}
+
+.ttt-cell.cell-x {
+    color: #38bdf8;
+}
+
+.ttt-cell.cell-o {
+    color: #f43f5e;
+}
+
+.ttt-cell.winning-cell {
+    background-color: rgba(16, 185, 129, 0.25);
+    border-color: var(--success);
+    transform: scale(1.04);
+}
+
+/* ====================================================
+   Connect 4 Board
+   ==================================================== */
+.c4-drop-row {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.c4-drop-btn {
+    height: 40px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.15s;
+}
+
+.c4-drop-btn:hover:not(:disabled) {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(2px);
+}
+
+.c4-board {
+    background-color: #1e3a8a;
+    border: 4px solid #172554;
+    border-radius: 16px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(6, 50px);
+    gap: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.c4-slot {
+    width: 50px;
+    height: 50px;
+    background-color: var(--bg-main);
+    border-radius: 50%;
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.6);
+    transition: background-color 0.2s;
+}
+
+.c4-slot.piece-red {
+    background: radial-gradient(circle at 35% 35%, #f87171, #dc2626);
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.4), 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.c4-slot.piece-yellow {
+    background: radial-gradient(circle at 35% 35%, #fde047, #ca8a04);
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.4), 0 0 10px rgba(202, 138, 4, 0.5);
+}
+
+.c4-slot.winning-slot {
+    border: 3px solid #ffffff;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(0.95); }
+    to { transform: scale(1.05); }
+}
+
+/* ====================================================
+   Rock-Paper-Scissors Arena
+   ==================================================== */
+.rps-battlefield {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+}
+
+.rps-fighter {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    flex: 1;
+    max-width: 180px;
+}
+
+.fighter-title {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.fighter-display {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fighter-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.rps-vs {
+    font-family: var(--font-pixel);
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+.rps-choices {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.rps-btn {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 90px;
+}
+
+.rps-btn:hover {
+    background-color: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+    transform: translateY(-4px);
+}
+
+.rps-btn .rps-icon {
+    font-size: 2.2rem;
+}
+
+.rps-btn .rps-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.rps-rules-box {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    width: 100%;
+}
+
+.rps-rules-box h3 {
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* ====================================================
+   Playing Cards & Blackjack / High-Low
+   ==================================================== */
+.card-tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 0.65rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.stats-pill {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Realistic CSS Playing Card */
+.cards-display-zone {
+    margin: 1.5rem 0;
+}
+
+.playing-card {
+    width: 140px;
+    height: 200px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    user-select: none;
+    position: relative;
+    border: 1px solid #e2e8f0;
+}
+
+.playing-card.red {
+    color: #e11d48;
+}
+
+.playing-card.black {
+    color: #0f172a;
+}
+
+.card-corner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    font-weight: 800;
+    font-size: 1.25rem;
+}
+
+.card-corner.bottom-right {
+    transform: rotate(180deg);
+}
+
+.card-center {
+    font-size: 3.2rem;
+    text-align: center;
+}
+
+.playing-card.face-down {
+    background: repeating-linear-gradient(
+        45deg,
+        #1e3a8a,
+        #1e3a8a 10px,
+        #1d4ed8 10px,
+        #1d4ed8 20px
+    );
+    border: 3px solid #ffffff;
+}
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-action {
+    min-width: 130px;
+    padding: 0.85rem 1.5rem;
+    font-size: 1.05rem;
+}
+
+.btn-higher {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-higher:hover {
+    background-color: #059669;
+}
+
+.btn-lower {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-lower:hover {
+    background-color: #dc2626;
+}
+
+/* Blackjack Rows */
+.bj-hand-section {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.hand-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.cards-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    min-height: 120px;
+    align-items: center;
+}
+
+.cards-row .playing-card {
+    width: 85px;
+    height: 125px;
+    padding: 6px;
+}
+
+.cards-row .card-corner {
+    font-size: 0.95rem;
+}
+
+.cards-row .card-center {
+    font-size: 1.8rem;
+}
+
+.btn-hit {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-stand {
+    background-color: var(--accent);
+    color: #1e1b4b;
+}
+
+/* ====================================================
+   About Page Styles
+   ==================================================== */
+.about-container {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.about-section {
+    margin-bottom: 2.25rem;
+}
+
+.about-section h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+    color: #cbd5e1;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.tech-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.tech-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.tech-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.tech-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.about-list {
+    margin-left: 1.25rem;
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.code-box {
+    background-color: #030712;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #38bdf8;
+}
+
+/* ====================================================
+   Footer
+   ==================================================== */
+.footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 1.75rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.footer-sub {
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+    color: #64748b;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .ttt-board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+    }
+
+    .c4-drop-row, .c4-board {
+        grid-template-columns: repeat(7, 36px);
+    }
+
+    .c4-board {
+        grid-template-rows: repeat(6, 36px);
+    }
+
+    .c4-slot {
+        width: 36px;
+        height: 36px;
+    }
+}

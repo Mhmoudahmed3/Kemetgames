@@ -1,2 +1,0 @@
-"""Blackout Arcade backend package."""
-

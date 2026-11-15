@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}Arcade Lobby{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">Welcome to <span class="highlight">Mini Arcade</span></h1>
+    <p class="hero-subtitle">
+        A collection of 4 classic games built with Python, Flask, HTML, CSS, and JavaScript.
+        Select a game below to start playing against the computer or a friend!
+    </p>
+</div>
+
+<div class="games-grid">
+    <!-- Game 1: Tic-Tac-Toe -->
+    <div class="game-card">
+        <div class="game-badge">Classic & AI</div>
+        <div class="game-icon">❌⭕</div>
+        <h2 class="game-title">Tic-Tac-Toe</h2>
+        <p class="game-desc">
+            The timeless 3x3 grid game. Play against a friend locally or challenge an unbeatable Minimax AI!
+        </p>
+        <ul class="game-features">
+            <li>✨ 3 AI Difficulties (Easy, Medium, Unbeatable)</li>
+            <li>👥 2-Player Pass & Play mode</li>
+            <li>🧠 Minimax Algorithm in Python</li>
+        </ul>
+        <a href="/tictactoe" class="btn btn-primary">Play Tic-Tac-Toe →</a>
+    </div>
+
+    <!-- Game 2: Connect 4 -->
+    <div class="game-card">
+        <div class="game-badge">Strategy</div>
+        <div class="game-icon">🔴🟡</div>
+        <h2 class="game-title">Connect 4</h2>
+        <p class="game-desc">
+            Drop colored discs into the 7x6 grid. Connect 4 discs horizontally, vertically, or diagonally to win!
+        </p>
+        <ul class="game-features">
+            <li>⬇️ Realistic vertical disc drop physics</li>
+            <li>🤖 Intelligent AI counter-play in Python</li>
+            <li>📊 Dynamic win detection across all directions</li>
+        </ul>
+        <a href="/connect4" class="btn btn-primary">Play Connect 4 →</a>
+    </div>
+
+    <!-- Game 3: Rock-Paper-Scissors -->
+    <div class="game-card">
+        <div class="game-badge">Speed & Fun</div>
+        <div class="game-icon">✊✋✌️</div>
+        <h2 class="game-title">Rock-Paper-Scissors</h2>
+        <p class="game-desc">
+            Quick-fire battle! Includes classic 3-choice and the expanded 5-choice Lizard-Spock edition.
+        </p>
+        <ul class="game-features">
+            <li>🦎 Includes Rock-Paper-Scissors-Lizard-Spock</li>
+            <li>🏆 Best-of-3, Best-of-5, and Streak formats</li>
+            <li>📖 Interactive win-rules visual guide</li>
+        </ul>
+        <a href="/rps" class="btn btn-primary">Play Rock-Paper-Scissors →</a>
+    </div>
+
+    <!-- Game 4: Playing Cards -->
+    <div class="game-card">
+        <div class="game-badge">Card Suite</div>
+        <div class="game-icon">🃏♠️♥️</div>
+        <h2 class="game-title">Card Games</h2>
+        <p class="game-desc">
+            Test your luck and strategy with a 52-card deck. Play High-Low streak challenge or classic Blackjack!
+        </p>
+        <ul class="game-features">
+            <li>🎴 High-Low streak guessing challenge</li>
+            <li>🎰 Blackjack vs. Dealer (Hit, Stand, Ace 1/11)</li>
+            <li>🔄 Authentic Fisher-Yates deck shuffle in Python</li>
+        </ul>
+        <a href="/cards" class="btn btn-primary">Play Card Games →</a>
+    </div>
+</div>
+
+<div class="cs50-banner">
+    <div class="cs50-badge">CS50 Final Project</div>
+    <p>
+        Designed and coded by a student exploring web development, backend routing, state machines, and game algorithms.
+        <a href="/about" class="banner-link">Learn more about the architecture & code →</a>
+    </p>
+</div>
+{% endblock %}

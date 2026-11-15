@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}Card Games{% endblock %}
+
+{% block content %}
+<div class="game-header">
+    <a href="/" class="back-link">← Back to Lobby</a>
+    <h1 class="page-title">Card Games Suite</h1>
+    <p class="page-subtitle">Standard 52-card deck with Fisher-Yates shuffle in Python.</p>
+</div>
+
+<!-- Tab Navigation -->
+<div class="card-tabs">
+    <button class="tab-btn active" id="tab-btn-hl" onclick="switchCardTab('highlow')">🃏 High-Low Streak</button>
+    <button class="tab-btn" id="tab-btn-bj" onclick="switchCardTab('blackjack')">🎰 Blackjack (21)</button>
+</div>
+
+<!-- ---------------------------------------------------- -->
+<!-- High-Low View                                        -->
+<!-- ---------------------------------------------------- -->
+<div class="game-arena tab-content" id="view-highlow">
+    <div class="control-panel">
+        <div class="stats-pill">
+            <span>🔥 Current Streak: <strong id="hl-streak">0</strong></span>
+        </div>
+        <div class="stats-pill">
+            <span>🏆 Best Streak: <strong id="hl-best">0</strong></span>
+        </div>
+        <button id="hl-reset-btn" class="btn btn-secondary">New Deck</button>
+    </div>
+
+    <div class="status-banner" id="hl-status">
+        Will the next card be Higher or Lower than this card?
+    </div>
+
+    <!-- Active Card Display -->
+    <div class="cards-display-zone">
+        <div class="playing-card" id="hl-card">
+            <div class="card-corner top-left">
+                <span class="card-rank" id="hl-rank">?</span>
+                <span class="card-suit" id="hl-suit">♠</span>
+            </div>
+            <div class="card-center" id="hl-center-suit">♠</div>
+            <div class="card-corner bottom-right">
+                <span class="card-rank" id="hl-rank-br">?</span>
+                <span class="card-suit" id="hl-suit-br">♠</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Higher / Lower Guess Buttons -->
+    <div class="card-actions">
+        <button class="btn btn-action btn-higher" id="btn-higher">
+            🔼 Higher
+        </button>
+        <button class="btn btn-action btn-lower" id="btn-lower">
+            🔽 Lower
+        </button>
+    </div>
+</div>
+
+<!-- ---------------------------------------------------- -->
+<!-- Blackjack View                                       -->
+<!-- ---------------------------------------------------- -->
+<div class="game-arena tab-content" id="view-blackjack" style="display: none;">
+    <div class="control-panel">
+        <div class="stats-pill">
+            <span>💰 Chips: $<strong id="bj-chips">100</strong></span>
+        </div>
+        <button id="bj-deal-btn" class="btn btn-primary">Deal New Hand ($10)</button>
+    </div>
+
+    <div class="status-banner" id="bj-status">
+        Click "Deal New Hand" to place a $10 bet and play!
+    </div>
+
+    <!-- Dealer's Hand -->
+    <div class="bj-hand-section">
+        <div class="hand-title">Dealer's Hand (<span id="dealer-score">?</span>)</div>
+        <div class="cards-row" id="dealer-cards">
+            <!-- Dealer cards rendered here -->
+        </div>
+    </div>
+
+    <!-- Player's Hand -->
+    <div class="bj-hand-section">
+        <div class="hand-title">Your Hand (<span id="player-score">0</span>)</div>
+        <div class="cards-row" id="player-cards">
+            <!-- Player cards rendered here -->
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="card-actions" id="bj-actions">
+        <button class="btn btn-action btn-hit" id="btn-hit" disabled>➕ Hit</button>
+        <button class="btn btn-action btn-stand" id="btn-stand" disabled>🛑 Stand</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
+{% endblock %}
